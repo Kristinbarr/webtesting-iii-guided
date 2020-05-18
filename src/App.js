@@ -1,28 +1,48 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import logo from './logo.svg'
+
+import Speak from './Speak'
+import './App.css'
+// import { resolve } from 'url';
+
+export const asyncFunc = () => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve('Success!')
+    }, 1000)
+  })
+}
 
 class App extends Component {
+  state = {
+    message: ''
+  }
+
+  speak = () => {
+    this.setState({ message: 'Bark' })
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+      <div className='App'>
+        <header className='App-header'>
+          <img src={logo} className='App-logo' alt='logo' />
           <p>
             Edit <code>src/App.js</code> and save to reload.
           </p>
           <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
+            className='App-link'
+            href='https://reactjs.org'
+            target='_blank'
+            rel='noopener noreferrer'
           >
             Learn React
           </a>
+          <Speak speak={this.speak} message={this.state.message} />
         </header>
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App

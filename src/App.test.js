@@ -1,14 +1,35 @@
-import React from 'react';
-import banana from 'react-test-renderer'; // 1: install this npm module as a dev dependency
+import React from 'react'
+import renderer from 'react-test-renderer' // 1: install this npm module as a dev dependency
+import { render, fireEvent } from '@testing-library/react'
 
-import App from './App';
+import App, { asyncFunc } from './App'
 
 describe('<App />', () => {
   // 2. write this test
   it('matches snapshot', () => {
-    const tree = banana.create(<App />); // generates a DOM tree
+    const tree = renderer.create(<App />) // generates a DOM tree
 
     // snapshots are a JSON representation of the DOM tree
-    expect(tree.toJSON()).toMatchSnapshot();
-  });
-});
+    expect(tree.toJSON()).toMatchSnapshot()
+  })
+})
+
+describe('asyncFunc', () => {
+  it('eventually resolves to success', () => {
+    const expected = 'Success!'
+    return expect(asyncFunc()).resolves.toBe(expected)
+  })
+})
+
+describe('speak', () => {
+  it("should pass 'bark' into Speak", () => {
+    // getByText finds, queryByText is boolean
+    const { getByTestId, queryByText } = render(<App />)
+
+    expect(queryByText(/bark/i)).toBeFalsy()
+
+    fireEvent.click(getByTestId(/speak/i)) // button element
+
+    expect(queryByText(/bark/i)).toBeTruthy()
+  })
+})
