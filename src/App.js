@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { Component } from 'react'
 import logo from './logo.svg'
 
@@ -12,15 +13,38 @@ export const asyncFunc = () => {
     }, 1000)
   })
 }
+=======
+import React, { Component } from "react";
+import logo from "./logo.svg";
+>>>>>>> 5cb5642b9147d654f866ca0a7ba87b39f7cc5fc4
 
+import Speak from "./components/Speak";
+import "./App.css";
+
+export const asyncFunc = () => {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve("Success!");
+    }, 1000);
+  });
+};
 class App extends Component {
   state = {
+<<<<<<< HEAD
     message: ''
   }
 
   speak = () => {
     this.setState({ message: 'Bark' })
   }
+=======
+    message: ""
+  };
+
+  speak = () => {
+    this.setState({ message: "Bark" });
+  };
+>>>>>>> 5cb5642b9147d654f866ca0a7ba87b39f7cc5fc4
 
   render() {
     return (
@@ -28,7 +52,7 @@ class App extends Component {
         <header className='App-header'>
           <img src={logo} className='App-logo' alt='logo' />
           <p>
-            Edit <code>src/App.js</code> and save to reload.
+            Edit <code>src/App.js</code> and manually reload.
           </p>
           <a
             className='App-link'
